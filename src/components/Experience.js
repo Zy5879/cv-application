@@ -5,8 +5,8 @@ function Experience() {
       <input type="text" placeholder="Job Name" name="jobName" />
       <input type="text" placeholder="Company" name="company" />
       <input type="text" placeholder="State" name="state" />
-      <input type="date" placeholder="From" name="fromDate" />
-      <input type="date" placeholder="To" name="toDate" />
+      <input type="text" placeholder="Start Date" name="fromDate" />
+      <input type="text" placeholder="End Date" name="toDate" />
       <button>Add</button>
       <button>Delete</button>
     </section>

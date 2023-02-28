@@ -6,7 +6,7 @@ function Education() {
       <input
         type="text"
         placeholder="Degree...N/A if inpplicable"
-        name="school"
+        name="degree"
       />
       <input type="date" placeholder="Graduation Date" name="gradDate" />
       <button>Add</button>
