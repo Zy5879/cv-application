@@ -29,7 +29,7 @@ function App() {
   });
   const [educationList, setEducationList] = useState([]);
 
-  function handleChange(e) {
+  function handleGeneral(e) {
     const { name, value, type, checked } = e.target;
     setGenralFormData((prevForm) => {
       return {
@@ -39,6 +39,27 @@ function App() {
     });
   }
 
+  function handleExp(e) {
+    const { name, value, type, checked } = e.target;
+    setExperienceData((prevData) => {
+      return {
+        ...prevData,
+        [name]: type === "checkbox" ? checked : value,
+      };
+    });
+  }
+
+  function handleEdu(e) {
+    const { name, value, type, checked } = e.target;
+    setEducationData((prevData) => {
+      return {
+        ...prevData,
+        [name]: type === "checkbox" ? checked : value,
+      };
+    });
+  }
+
+  console.log(educationData);
   return (
     <div className="container">
       <Navbar />
@@ -49,10 +70,22 @@ function App() {
         phoneNumber={generalForm.phoneNumber}
         email={generalForm.email}
         description={generalForm.description}
-        handleChange={handleChange}
+        handleGeneral={handleGeneral}
       />
-      <Experience />
-      <Education />
+      <Experience
+        jobName={experienceData.jobName}
+        company={experienceData.company}
+        state={experienceData.state}
+        fromDate={experienceData.fromDate}
+        toDate={experienceData.toDate}
+        handleExp={handleExp}
+      />
+      <Education
+        school={educationData.school}
+        degree={educationData.degree}
+        gradDate={educationData.gradDate}
+        handleEdu={handleEdu}
+      />
     </div>
   );
 }
