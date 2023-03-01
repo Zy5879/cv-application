@@ -6,7 +6,7 @@ A react app that builds a resume based off user input
 
 ## Live Demo
 
-[CV APPLICATION]()
+[CV APPLICATION](https://eloquent-rolypoly-3123e1.netlify.app/)
 
 #
 
