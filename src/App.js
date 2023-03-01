@@ -3,6 +3,7 @@ import General from "./components/General";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import { useState } from "react";
+import { nanoid } from "nanoid";
 
 function App() {
   const [generalForm, setGenralFormData] = useState({
@@ -13,21 +14,56 @@ function App() {
     email: "",
     description: "",
   });
-  const [experienceData, setExperienceData] = useState({
-    jobName: "",
-    company: "",
-    state: "",
-    fromDate: "",
-    toDate: "",
-  });
-  const [experienceList, setExperienceList] = useState([]);
+  const [experienceData, setExperienceData] = useState([
+    {
+      jobName: "",
+      company: "",
+      state: "",
+      fromDate: "",
+      toDate: "",
+      id: nanoid(),
+    },
+  ]);
 
-  const [educationData, setEducationData] = useState({
-    school: "",
-    degree: "",
-    gradDate: "",
-  });
-  const [educationList, setEducationList] = useState([]);
+  const [educationData, setEducationData] = useState([
+    {
+      school: "",
+      degree: "",
+      gradDate: "",
+      id: nanoid(),
+    },
+  ]);
+
+  const [currentExpId, setCurrentExpId] = useState(
+    (experienceData[0] && experienceData[0].id) || ""
+  );
+
+  function addNewExp() {
+    const newExp = {
+      jobName: "",
+      company: "",
+      state: "",
+      fromDate: "",
+      toDate: "",
+      id: nanoid(),
+    };
+    setExperienceData((prevData) => [newExp, ...prevData]);
+    setCurrentExpId(newExp.id);
+  }
+
+  const [currentEduId, setCurrentEduId] = useState(
+    (educationData[0] && educationData[0].id) || ""
+  );
+  function addNewEdu() {
+    const newEdu = {
+      school: "",
+      degree: "",
+      gradDate: "",
+      id: nanoid(),
+    };
+    setEducationData((prevData) => [newEdu, ...prevData]);
+    setCurrentEduId(newEdu.id);
+  }
 
   function handleGeneral(e) {
     const { name, value, type, checked } = e.target;
@@ -41,25 +77,44 @@ function App() {
 
   function handleExp(e) {
     const { name, value, type, checked } = e.target;
-    setExperienceData((prevData) => {
-      return {
-        ...prevData,
-        [name]: type === "checkbox" ? checked : value,
-      };
-    });
+    setExperienceData((prevData) =>
+      prevData.map((data) => {
+        if (data.id === currentExpId) {
+          return {
+            ...data,
+            [name]: type === "checkbox" ? checked : value,
+          };
+        } else {
+          return data;
+        }
+      })
+    );
   }
 
   function handleEdu(e) {
     const { name, value, type, checked } = e.target;
-    setEducationData((prevData) => {
-      return {
-        ...prevData,
-        [name]: type === "checkbox" ? checked : value,
-      };
-    });
+    setEducationData((prevData) =>
+      prevData.map((data) => {
+        if (data.id === currentEduId) {
+          return {
+            ...data,
+            [name]: type === "checkbox" ? checked : value,
+          };
+        } else {
+          return data;
+        }
+      })
+    );
   }
 
-  console.log(educationData);
+  function deleteEdu(event, eduId) {
+    setEducationData((prevEdu) => prevEdu.filter((edu) => edu.id !== eduId));
+  }
+
+  function deleteExp(event, expId) {
+    setExperienceData((prevExp) => prevExp.filter((exp) => exp.id !== expId));
+  }
+
   return (
     <div className="container">
       <Navbar />
@@ -73,18 +128,18 @@ function App() {
         handleGeneral={handleGeneral}
       />
       <Experience
-        jobName={experienceData.jobName}
-        company={experienceData.company}
-        state={experienceData.state}
-        fromDate={experienceData.fromDate}
-        toDate={experienceData.toDate}
+        experienceData={experienceData}
+        setCurrentExpId={setCurrentExpId}
+        addNewExp={addNewExp}
         handleExp={handleExp}
+        deleteExp={deleteExp}
       />
       <Education
-        school={educationData.school}
-        degree={educationData.degree}
-        gradDate={educationData.gradDate}
+        educationData={educationData}
+        setCurrentEduId={setCurrentEduId}
+        addNewEdu={addNewEdu}
         handleEdu={handleEdu}
+        deleteEdu={deleteEdu}
       />
     </div>
   );
