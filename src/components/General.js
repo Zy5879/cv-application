@@ -37,13 +37,6 @@ function General(props) {
         value={props.email}
         onChange={props.handleGeneral}
       />
-      <input
-        type="text"
-        placeholder="Description"
-        name="description"
-        value={props.description}
-        onChange={props.handleGeneral}
-      />
     </section>
   );
 }

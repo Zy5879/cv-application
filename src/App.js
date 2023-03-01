@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import General from "./components/General";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
+import Preview from "./components/Preview";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 
@@ -12,7 +13,6 @@ function App() {
     address: "",
     phoneNumber: "",
     email: "",
-    description: "",
   });
   const [experienceData, setExperienceData] = useState([
     {
@@ -124,7 +124,6 @@ function App() {
         address={generalForm.address}
         phoneNumber={generalForm.phoneNumber}
         email={generalForm.email}
-        description={generalForm.description}
         handleGeneral={handleGeneral}
       />
       <Experience
@@ -140,6 +139,11 @@ function App() {
         addNewEdu={addNewEdu}
         handleEdu={handleEdu}
         deleteEdu={deleteEdu}
+      />
+      <Preview
+        generalForm={generalForm}
+        experienceData={experienceData}
+        educationData={educationData}
       />
     </div>
   );
