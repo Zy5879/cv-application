@@ -1,8 +1,8 @@
 function Navbar() {
   return (
-    <nav>
+    <div className="nav--bar">
       <h1>CV Application</h1>
-    </nav>
+    </div>
   );
 }
 

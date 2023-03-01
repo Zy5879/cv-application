@@ -1,6 +1,6 @@
 function General(props) {
   return (
-    <section>
+    <section className="gen--input">
       <h4>Personal Information</h4>
       <input
         type="text"

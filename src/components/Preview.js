@@ -20,7 +20,7 @@ function Preview(props) {
   });
 
   return (
-    <section>
+    <section className="preview">
       <h1>
         {props.generalForm.firstName} {props.generalForm.lastName}
       </h1>

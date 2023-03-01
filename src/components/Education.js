@@ -1,7 +1,7 @@
 function Education(props) {
   const eduElemets = props.educationData.map((edu) => {
     return (
-      <div key={edu.id}>
+      <div key={edu.id} className="edu--input">
         <input
           type="text"
           placeholder="University/Schooling"

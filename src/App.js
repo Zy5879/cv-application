@@ -3,6 +3,8 @@ import General from "./components/General";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Preview from "./components/Preview";
+import "./styles.css";
+
 import { useState } from "react";
 import { nanoid } from "nanoid";
 

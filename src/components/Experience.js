@@ -1,7 +1,7 @@
 function Experience(props) {
   const expElements = props.experienceData.map((exp) => {
     return (
-      <div key={exp.id}>
+      <div key={exp.id} className="exp--input">
         <input
           type="text"
           placeholder="Job Name"
