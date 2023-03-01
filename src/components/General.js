@@ -18,7 +18,7 @@ function General(props) {
       />
       <input
         type="text"
-        placeholder="Address"
+        placeholder="Lawton,OK"
         name="address"
         value={props.address}
         onChange={props.handleGeneral}

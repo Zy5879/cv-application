@@ -4,7 +4,6 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Preview from "./components/Preview";
 import "./styles.css";
-
 import { useState } from "react";
 import { nanoid } from "nanoid";
 
@@ -16,6 +15,7 @@ function App() {
     phoneNumber: "",
     email: "",
   });
+
   const [experienceData, setExperienceData] = useState([
     {
       jobName: "",
@@ -27,6 +27,10 @@ function App() {
     },
   ]);
 
+  const [currentExpId, setCurrentExpId] = useState(
+    (experienceData[0] && experienceData[0].id) || ""
+  );
+
   const [educationData, setEducationData] = useState([
     {
       school: "",
@@ -36,8 +40,8 @@ function App() {
     },
   ]);
 
-  const [currentExpId, setCurrentExpId] = useState(
-    (experienceData[0] && experienceData[0].id) || ""
+  const [currentEduId, setCurrentEduId] = useState(
+    (educationData[0] && educationData[0].id) || ""
   );
 
   function addNewExp() {
@@ -53,9 +57,6 @@ function App() {
     setCurrentExpId(newExp.id);
   }
 
-  const [currentEduId, setCurrentEduId] = useState(
-    (educationData[0] && educationData[0].id) || ""
-  );
   function addNewEdu() {
     const newEdu = {
       school: "",
@@ -120,33 +121,37 @@ function App() {
   return (
     <div className="container">
       <Navbar />
-      <General
-        firstName={generalForm.firstName}
-        lastName={generalForm.lastName}
-        address={generalForm.address}
-        phoneNumber={generalForm.phoneNumber}
-        email={generalForm.email}
-        handleGeneral={handleGeneral}
-      />
-      <Experience
-        experienceData={experienceData}
-        setCurrentExpId={setCurrentExpId}
-        addNewExp={addNewExp}
-        handleExp={handleExp}
-        deleteExp={deleteExp}
-      />
-      <Education
-        educationData={educationData}
-        setCurrentEduId={setCurrentEduId}
-        addNewEdu={addNewEdu}
-        handleEdu={handleEdu}
-        deleteEdu={deleteEdu}
-      />
-      <Preview
-        generalForm={generalForm}
-        experienceData={experienceData}
-        educationData={educationData}
-      />
+      <div className="forms">
+        <General
+          firstName={generalForm.firstName}
+          lastName={generalForm.lastName}
+          address={generalForm.address}
+          phoneNumber={generalForm.phoneNumber}
+          email={generalForm.email}
+          handleGeneral={handleGeneral}
+        />
+        <Experience
+          experienceData={experienceData}
+          setCurrentExpId={setCurrentExpId}
+          addNewExp={addNewExp}
+          handleExp={handleExp}
+          deleteExp={deleteExp}
+        />
+        <Education
+          educationData={educationData}
+          setCurrentEduId={setCurrentEduId}
+          addNewEdu={addNewEdu}
+          handleEdu={handleEdu}
+          deleteEdu={deleteEdu}
+        />
+      </div>
+      <div className="preview--form">
+        <Preview
+          generalForm={generalForm}
+          experienceData={experienceData}
+          educationData={educationData}
+        />
+      </div>
     </div>
   );
 }

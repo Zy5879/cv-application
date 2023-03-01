@@ -3,7 +3,7 @@ function Preview(props) {
     return (
       <ul key={exp.id}>
         <li>
-          {exp.jobName} {exp.company} {exp.state} {exp.fromDate} {exp.toDate}
+          {exp.jobName} {exp.company} {exp.state} {exp.fromDate} - {exp.toDate}
         </li>
       </ul>
     );
@@ -20,20 +20,26 @@ function Preview(props) {
   });
 
   return (
-    <section className="preview">
-      <h1>
-        {props.generalForm.firstName} {props.generalForm.lastName}
-      </h1>
-      <ul>
-        <li>{props.generalForm.address}</li>
-        <li>{props.generalForm.phoneNumber}</li>
-        <li>{props.generalForm.email}</li>
-      </ul>
-      <h3>Experience</h3>
-      {expElements}
-      <h3>Education</h3>
-      {eduElements}
-    </section>
+    <div className="preview">
+      <header className="header--cv">
+        <h1>
+          {props.generalForm.firstName} {props.generalForm.lastName}
+        </h1>
+        <ul>
+          <li>{props.generalForm.address}</li>
+          <li>{props.generalForm.phoneNumber}</li>
+          <li>{props.generalForm.email}</li>
+        </ul>
+      </header>
+      <main className="experience--prev">
+        <h3>Experience</h3>
+        {expElements}
+      </main>
+      <main className="education--preview">
+        <h3>Education</h3>
+        {eduElements}
+      </main>
+    </div>
   );
 }
 
